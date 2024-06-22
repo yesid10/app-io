@@ -13,4 +13,18 @@
       <ion-title size="large">ProductsList</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    @for (product of products; track product._id) {
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <img src={{product.image}} alt="">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{product.name}}</h2>
+          <p>{{product.description}}</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
 </ion-content>

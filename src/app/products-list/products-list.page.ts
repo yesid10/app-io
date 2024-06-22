@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { IonicModule } from '@ionic/angular';
+import { Product, ProductsService } from '../sercices/products.service';
 
 @Component({
   selector: 'app-products-list',
@@ -13,9 +14,13 @@ import { IonicModule } from '@ionic/angular';
 })
 export class ProductsListPage implements OnInit {
 
-  constructor() { }
+  products: Product[]= [];
 
-  ngOnInit() {
+  productsService = inject(ProductsService);
+
+  async ngOnInit() {
+    const response = await this.productsService.getAll();
+    this.products= response.results
   }
 
 }
